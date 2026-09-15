@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.css"
+        integrity="sha512-E+53kXnJyuZFSz75xSmTfCpUNj3gp9Bd80TeQQMTPJTVWDRHPOpEYczGwWtsZXvaiz27cqvhdH8U+g/NMYua3A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+            /* 1 rem 10px */
+            /* 1 px 6.25% */
+
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            border: 1px solid black;
+        }
+
+        p {
+            font-size: 1.3rem;
+
+        }
+
+        input[type='checkbox'] {
+            width: 2rem;
+            aspect-ratio: 1;
+            accent-color: green;
+            margin-right: 0.8rem;
+        }
+
+        body {
+            background-color: hsl(0, 0%, 97%);
+            /* background-image: linear-gradient(to right top, red, yellow); */
+        }
+
+
+        .container {
+            height: 100vh;
+            width: 100%;
+            display: grid;
+            place-items: center;
+
+            padding: 3.5rem 5.5rem;
+
+        }
+
+        .app-container {
+            padding: 2rem 2.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+
+        .btn {
+            padding: 1rem 4rem;
+            border-radius: 2rem;
+            color: white;
+            background-color: black;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .btn-1 {
+            background-color: rgb(3, 0, 44);
+            border-color: rgb(3, 0, 44);
+        }
+
+        .btn-1:hover {
+            /*background-color: transparent;
+            color: rgb(3, 0, 44);*/
+            scale: 1.1;
+        }
+
+        .btn-2 {
+            background-color: rgb(73, 218, 0);
+            border-color: rgb(73, 218, 0);
+        }
+
+        .btn-2:hover {
+            /*background-color: transparent;
+            color: rgb(73, 218, 0);*/
+            scale: 1.1;
+        }
+
+        .code-preview {
+            margin-top: 1.3rem;
+            /* background-color: rgba(135, 207, 235, 0.292); */
+
+            /* Transparency */
+            background: rgba(255, 255, 255, 0.11);
+
+
+
+            padding: 1.4rem 2rem;
+            border-radius: 1rem;
+            border-left: 0.3rem solid white;
+
+            height: 80px;
+
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.279);
+            }
+        }
+
+
+        .code-preview p {
+            text-align: left;
+            font-size: 1.6rem;
+            max-width: 280px;
+        }
+
+        .arrow-btns-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+
+        }
+
+        .arrow-btn {
+            background-color: white;
+            border-color: white;
+            border-radius: 50%;
+
+            height: 2.5rem;
+            width: 2.5rem;
+
+            transition: all 1s ease-in-out;
+            cursor: pointer;
+        }
+
+        .arrow-btn:hover {
+            scale: 1.1;
+        }
+
+        .arrow-btns-container .arrow-btn:nth-child(1) i {
+            rotate: 180deg;
+        }
+
+        .arrow-btns-container .arrow-btn:nth-child(2) i {
+            rotate: 90deg;
+        }
+
+        .arrow-btns-container .arrow-btn:nth-child(3) i {
+            rotate: 0deg;
+        }
+
+        .arrow-btns-container .arrow-btn:nth-child(4) i {
+            rotate: 270deg;
+        }
+
+        .arrow-btns-container .arrow-btn:nth-child(5) i {
+            rotate: 223deg;
+        }
+
+        .arrow-btns-container .arrow-btn:nth-child(6) i {
+            rotate: 133deg;
+        }
+
+        .arrow-btns-container .arrow-btn:nth-child(7) i {
+            rotate: 316deg;
+        }
+
+        .arrow-btns-container .arrow-btn:nth-child(8) i {
+            rotate: 37deg;
+        }
+
+        .degreeContainer {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .degreeSubContainer {
+            display: flex;
+            align-items: center;
+        }
+
+        /* .degreeContainer .degreeSubContainer input[type='checkbox'] {
+            width: 2rem;
+            aspect-ratio: 1;
+            accent-color: green;
+            margin-right: 0.8rem;
+        } */
+
+        .degreeContainer .degreeSubContainer {
+            font-size: 1.6rem;
+        }
+
+
+
+
+        .knob {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            background: #222;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .indicator {
+            position: absolute;
+            width: 4px;
+            height: 50%;
+            background: white;
+            left: calc(50% - 2px);
+            top: 0px;
+            transform-origin: bottom;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="app-container">
+
+            <div class="arrow-btns-container">
+
+                <button class="arrow-btn" data-direction="left">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button class="arrow-btn" data-direction="bottom">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button class="arrow-btn" data-direction="right">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button class="arrow-btn" data-direction="top">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button class="arrow-btn" data-direction="left top">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button class="arrow-btn" data-direction="left bottom">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button class="arrow-btn" data-direction="right top">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button class="arrow-btn" data-direction="right bottom">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="degreeContainer">
+                <div class="degreeSubContainer">
+                    <input type="checkbox" name="enableDegreeControls" id="enableDegreeControls">
+                    <label for="enableDegreeControls">Enable Degree Controls</label>
+                </div>
+                <div class="knob" id="knob" style="display: none;">
+                    <div class="indicator" id="indicator"></div>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn btn-1" id="btn-1">#91F74</button>
+                <button class="btn btn-2" id="btn-2">#38103B</button>
+            </div>
+
+            <p>Copy your code here</p>
+
+            <div class="code-preview">
+                <p>background-image:linear-gradient(to right, red, yellow)</p>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        let btn1 = document.querySelector("#btn-1");
+        let btn2 = document.querySelector("#btn-2");
+
+        let arrowsbtns = document.querySelector('.arrow-btns-container');
+
+        let codePreview = document.querySelector(".code-preview p");
+
+        let enableDegreeControls = document.getElementById("enableDegreeControls");
+
+        const knob = document.getElementById("knob");
+        const indicator = document.getElementById("indicator");
+
+        let degreeControls = false;
+
+        let degree = 0;
+
+        enableDegreeControls.addEventListener('input', (e) => {
+            // console.log(e.target.checked);
+            degreeControls = e.target.checked;
+
+            if (degreeControls) {
+                arrowsbtns.style.display = 'none';
+                knob.style.display = 'flex';
+            } else {
+                arrowsbtns.style.display = 'flex';
+                knob.style.display = 'none';
+            }
+        })
+
+        btn1.addEventListener('click', handleButton1);
+        btn2.addEventListener('click', handleButton2);
+
+
+        let HexMap = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
+
+        let color1 = "red";
+        let color2 = "yellow";
+        let direction = "right";
+        let deg = 0;
+
+        let linearGradient = `background-image:linear-gradient(to ${direction}, ${color1}, ${color2});`;
+
+        function generateIndex() {
+            // return random index between 0, 15
+
+            let n = Math.floor((Math.random() * 16));
+            // n = n % 16; // set in a limit of 16
+            // console.log(n);
+            return n;
+
+        }
+
+        function generate6distHexDecimalCode() {
+            // RGB -> RRGGBB
+            // let color = `#${HexMap[generateIndex()]}${HexMap[generateIndex()]}${HexMap[generateIndex()]}${HexMap[generateIndex()]}${HexMap[generateIndex()]}${HexMap[generateIndex()]}`;
+            let color = '#';
+
+            for (let i = 0; i < 6; i++) {
+                color += HexMap[generateIndex()];
+            }
+
+            return color;
+        }
+
+        function handleButton1() {
+            let color;
+
+            do {
+                color = generate6distHexDecimalCode();
+                console.log(color);
+            } while (color == color1 && color == color2)
+
+            btn1.innerText = color;
+
+            color1 = color;
+            updateBackground()
+        }
+
+        function handleButton2() {
+            let color;
+            do {
+                color = generate6distHexDecimalCode();
+                console.log(color);
+            } while (color == color1 && color == color2)
+            btn2.innerText = color;
+            color2 = color;
+            updateBackground()
+        }
+
+
+        arrowsbtns.addEventListener('click', (e) => {
+            let button = e.target.closest('.arrow-btn');
+
+            if (button) {
+                // console.log(button.dataset.direction);
+
+                let newDirection = button.dataset.direction;
+                if (newDirection) {
+                    direction = newDirection;
+                    updateBackground();
+                }
+            }
+        })
+
+
+
+        knob.addEventListener("mousemove", (e) => {
+
+            if (e.buttons !== 1) return;
+
+            const rect = knob.getBoundingClientRect();
+
+            // Center of knob
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            // Mouse position relative to center
+            const x = e.clientX - centerX;
+            const y = e.clientY - centerY;
+
+            // Calculate angle
+            let angle = Math.atan2(y, x) * 180 / Math.PI;
+
+            // Convert angle
+            angle += 90;
+
+            if (angle < 0) {
+                angle += 360;
+            }
+
+            indicator.style.transform = `rotate(${angle}deg)`;
+
+            degree = angle;
+            updateBackground();
+        });
+
+
+
+        function updateBackground() {
+            if (degreeControls) {
+                linearGradient = `background-image:linear-gradient(${degree}deg, ${color1}, ${color2});`;
+            } else {
+                linearGradient = `background-image:linear-gradient(to ${direction}, ${color1}, ${color2});`;
+            }
+            document.body.style = linearGradient;
+            codePreview.innerText = linearGradient;
+        }
+        (() => {
+            handleButton1();
+            handleButton2();
+        })();
+
+
+        codePreview.addEventListener('click', () => {
+            navigator.clipboard.writeText(linearGradient);
+        })
+    </script>
+</body>
+
+</html>
